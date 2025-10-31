@@ -1,131 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Manipulator</title>
-    <link rel="stylesheet" href="/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Manipulator</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>PDF Manipulator</h1>
-            <p>Simple PDF manipulation tool</p>
-        </header>
+<div class="container">
+  <header>
+    <h1>PDF Manipulator</h1>
+    <p>Simple PDF manipulation tool</p>
+  </header>
 
-        <div class="tools-grid">
-            <!-- Delete Pages Tool -->
-            <div class="tool-card">
-                <h3>🗑️ Delete Pages</h3>
-                <p>Remove unwanted pages from your PDF documents</p>
-                
-                <div class="file-input-wrapper">
-                    <input type="file" id="deleteFile" class="file-input" accept=".pdf">
-                    <label for="deleteFile" class="file-input-button">Choose PDF File</label>
-                </div>
-                
-                <div class="file-info" id="deleteFileInfo">
-                    <h4>File Information</h4>
-                </div>
-                
-                <input type="text" class="pages-input" id="deletePages" placeholder="Pages to delete (e.g., 1,3,5-7)">
-                
-                <button class="action-button" id="deleteButton" onclick="deletePages()">Delete Pages</button>
-                
-                <div class="loading" id="deleteLoading">
-                    <div class="loading-spinner"></div>
-                    <p>Processing...</p>
-                </div>
-                
-                <div class="error-message" id="deleteError"></div>
-                <div class="success-message" id="deleteSuccess"></div>
-            </div>
+  <div class="tools-grid">
+    <!-- Delete Pages Tool -->
+    <div class="tool-card">
+      <h3>🗑️ Delete Pages</h3>
+      <p>Remove unwanted pages from your PDF documents</p>
 
-            <!-- Combine PDFs Tool -->
-            <div class="tool-card">
-                <h3>🔗 Combine PDFs</h3>
-                <p>Merge multiple PDF files into a single document</p>
-                
-                <div class="file-input-wrapper">
-                    <input type="file" id="combineFiles" class="file-input" accept=".pdf" multiple>
-                    <label for="combineFiles" class="file-input-button">Choose PDF Files</label>
-                </div>
-                
-                <div class="file-info" id="combineFileInfo">
-                    <h4>Selected Files</h4>
-                </div>
-                
-                <button class="action-button" id="combineButton" onclick="combinePdfs()">Combine PDFs</button>
-                
-                <div class="loading" id="combineLoading">
-                    <div class="loading-spinner"></div>
-                    <p>Processing...</p>
-                </div>
-                
-                <div class="error-message" id="combineError"></div>
-                <div class="success-message" id="combineSuccess"></div>
-            </div>
+      <div class="file-input-wrapper">
+        <input type="file" id="deleteFile" class="file-input" accept=".pdf">
+        <label for="deleteFile" class="file-input-button">Choose PDF File</label>
+      </div>
 
-            <!-- Extract Pages Tool -->
-            <div class="tool-card">
-                <h3>📄 Extract Pages</h3>
-                <p>Extract specific pages from a PDF into a new document</p>
-                
-                <div class="file-input-wrapper">
-                    <input type="file" id="extractFile" class="file-input" accept=".pdf">
-                    <label for="extractFile" class="file-input-button">Choose PDF File</label>
-                </div>
-                
-                <div class="file-info" id="extractFileInfo">
-                    <h4>File Information</h4>
-                </div>
-                
-                <input type="text" class="pages-input" id="extractPages" placeholder="Pages to extract (e.g., 1,3,5-7)">
-                
-                <button class="action-button" id="extractButton" onclick="extractPages()">Extract Pages</button>
-                
-                <div class="loading" id="extractLoading">
-                    <div class="loading-spinner"></div>
-                    <p>Processing...</p>
-                </div>
-                
-                <div class="error-message" id="extractError"></div>
-                <div class="success-message" id="extractSuccess"></div>
-            </div>
+      <div class="file-info" id="deleteFileInfo">
+        <h4>File Information</h4>
+      </div>
 
-            <!-- Optimize PDF Tool -->
-            <div class="tool-card">
-                <h3>⚡ Optimize PDF</h3>
-                <p>Reduce file size by compressing PDF documents</p>
-                
-                <div class="file-input-wrapper">
-                    <input type="file" id="optimizeFile" class="file-input" accept=".pdf">
-                    <label for="optimizeFile" class="file-input-button">Choose PDF File</label>
-                </div>
-                
-                <div class="file-info" id="optimizeFileInfo">
-                    <h4>File Information</h4>
-                </div>
-                
-                <div class="slider-container">
-                    <label for="compressionSlider">Compression Level:</label>
-                    <input type="range" id="compressionSlider" class="slider" min="0.1" max="1.0" step="0.1" value="0.8">
-                    <div class="slider-value" id="compressionValue">80%</div>
-                </div>
-                
-                <button class="action-button" id="optimizeButton" onclick="optimizePdf()">Optimize PDF</button>
-                
-                <div class="loading" id="optimizeLoading">
-                    <div class="loading-spinner"></div>
-                    <p>Processing...</p>
-                </div>
-                
-                <div class="error-message" id="optimizeError"></div>
-                <div class="success-message" id="optimizeSuccess"></div>
-            </div>
-        </div>
+      <input type="text" class="pages-input" id="deletePages"
+             placeholder="Pages to delete (e.g., 1,3,5-7)">
+
+      <button class="action-button" id="deleteButton" onclick="deletePages()">Delete Pages</button>
+
+      <div class="loading" id="deleteLoading">
+        <div class="loading-spinner"></div>
+        <p>Processing...</p>
+      </div>
+
+      <div class="error-message" id="deleteError"></div>
+      <div class="success-message" id="deleteSuccess"></div>
     </div>
 
-    <script src="/js/app.js"></script>
+    <!-- Combine PDFs Tool -->
+    <div class="tool-card">
+      <h3>🔗 Combine PDFs</h3>
+      <p>Merge multiple PDF files into a single document</p>
+
+      <div class="file-input-wrapper">
+        <input type="file" id="combineFiles" class="file-input" accept=".pdf" multiple>
+        <label for="combineFiles" class="file-input-button">Choose PDF Files</label>
+      </div>
+
+      <div class="file-info" id="combineFileInfo">
+        <h4>Selected Files</h4>
+      </div>
+
+      <button class="action-button" id="combineButton" onclick="combinePdfs()">Combine PDFs</button>
+
+      <div class="loading" id="combineLoading">
+        <div class="loading-spinner"></div>
+        <p>Processing...</p>
+      </div>
+
+      <div class="error-message" id="combineError"></div>
+      <div class="success-message" id="combineSuccess"></div>
+    </div>
+
+    <!-- Extract Pages Tool -->
+    <div class="tool-card">
+      <h3>📄 Extract Pages</h3>
+      <p>Extract specific pages from a PDF into a new document</p>
+
+      <div class="file-input-wrapper">
+        <input type="file" id="extractFile" class="file-input" accept=".pdf">
+        <label for="extractFile" class="file-input-button">Choose PDF File</label>
+      </div>
+
+      <div class="file-info" id="extractFileInfo">
+        <h4>File Information</h4>
+      </div>
+
+      <input type="text" class="pages-input" id="extractPages"
+             placeholder="Pages to extract (e.g., 1,3,5-7)">
+
+      <button class="action-button" id="extractButton" onclick="extractPages()">Extract Pages
+      </button>
+
+      <div class="loading" id="extractLoading">
+        <div class="loading-spinner"></div>
+        <p>Processing...</p>
+      </div>
+
+      <div class="error-message" id="extractError"></div>
+      <div class="success-message" id="extractSuccess"></div>
+    </div>
+
+    <!-- Optimize PDF Tool -->
+    <div class="tool-card">
+      <h3>⚡ Optimize PDF</h3>
+      <p>Reduce file size by compressing PDF documents</p>
+
+      <div class="file-input-wrapper">
+        <input type="file" id="optimizeFile" class="file-input" accept=".pdf">
+        <label for="optimizeFile" class="file-input-button">Choose PDF File</label>
+      </div>
+
+      <div class="file-info" id="optimizeFileInfo">
+        <h4>File Information</h4>
+      </div>
+
+      <div class="slider-container">
+        <label for="compressionSlider">Compression Level:</label>
+        <input type="range" id="compressionSlider" class="slider" min="0.1" max="1.0" step="0.1"
+               value="0.8">
+        <div class="slider-value" id="compressionValue">80%</div>
+      </div>
+
+      <button class="action-button" id="optimizeButton" onclick="optimizePdf()">Optimize PDF
+      </button>
+
+      <div class="loading" id="optimizeLoading">
+        <div class="loading-spinner"></div>
+        <p>Processing...</p>
+      </div>
+
+      <div class="error-message" id="optimizeError"></div>
+      <div class="success-message" id="optimizeSuccess"></div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/app.js"></script>
 </body>
 </html>
