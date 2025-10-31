@@ -12,6 +12,15 @@ import org.springframework.web.multipart.MultipartFile
 @CrossOrigin(origins = ["*"])
 class PdfController(private val pdfService: PdfService) {
 
+    /**
+     * Removes specified pages from a PDF document.
+     * Accepts a PDF file and a comma-separated string of page numbers to delete.
+     * Page numbers are 1-indexed and can include ranges (e.g., "1,3,5-7").
+     * 
+     * @param file The PDF file to process
+     * @param pages Comma-separated page numbers to delete (e.g., "1,3,5-7")
+     * @return ResponseEntity containing the modified PDF as byte array
+     */
     @PostMapping("/delete-pages")
     fun deletePages(
         @RequestParam("file") file: MultipartFile,
@@ -31,6 +40,13 @@ class PdfController(private val pdfService: PdfService) {
             .body(result)
     }
 
+    /**
+     * Combines multiple PDF files into a single document.
+     * Takes an array of PDF files and merges them in the order they are provided.
+     * 
+     * @param files Array of PDF files to combine
+     * @return ResponseEntity containing the combined PDF as byte array
+     */
     @PostMapping("/combine")
     fun combinePdfs(@RequestParam("files") files: Array<MultipartFile>): ResponseEntity<ByteArray> {
         if (files.isEmpty()) {
@@ -45,6 +61,15 @@ class PdfController(private val pdfService: PdfService) {
             .body(result)
     }
 
+    /**
+     * Extracts specified pages from a PDF document into a new PDF.
+     * Creates a new PDF containing only the specified pages from the source document.
+     * Page numbers are 1-indexed and can include ranges (e.g., "1,3,5-7").
+     * 
+     * @param file The source PDF file
+     * @param pages Comma-separated page numbers to extract (e.g., "1,3,5-7")
+     * @return ResponseEntity containing the extracted pages as a new PDF byte array
+     */
     @PostMapping("/extract-pages")
     fun extractPages(
         @RequestParam("file") file: MultipartFile,
@@ -64,6 +89,14 @@ class PdfController(private val pdfService: PdfService) {
             .body(result)
     }
 
+    /**
+     * Optimizes a PDF document by applying compression to reduce file size.
+     * Accepts a compression level parameter to control the trade-off between file size and quality.
+     * 
+     * @param file The PDF file to optimize
+     * @param compressionLevel Float value between 0.1 and 1.0 (default: 0.8) - higher values preserve quality
+     * @return ResponseEntity containing the optimized PDF as byte array
+     */
     @PostMapping("/optimize")
     fun optimizePdf(
         @RequestParam("file") file: MultipartFile,
@@ -77,6 +110,13 @@ class PdfController(private val pdfService: PdfService) {
             .body(result)
     }
 
+    /**
+     * Retrieves metadata and information about a PDF document.
+     * Returns information such as page count, title, author, subject, and file size.
+     * 
+     * @param file The PDF file to analyze
+     * @return ResponseEntity containing a map with PDF metadata information
+     */
     @PostMapping("/info")
     fun getPdfInfo(@RequestParam("file") file: MultipartFile): ResponseEntity<Map<String, Any>> {
         val info = pdfService.getPdfInfo(file)

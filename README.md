@@ -160,17 +160,22 @@ logging.level.org.pdfeditor=INFO
 src/
 ├── main/
 │   ├── kotlin/
+│   │   ├── Main.kt                            # Application entry point
 │   │   └── org/
 │   │       └── pdfeditor/
-│   │           ├── PdfEditorApplication.kt    # Main Spring Boot application
 │   │           ├── controller/
 │   │           │   ├── PdfController.kt       # REST API endpoints
 │   │           │   └── WebController.kt       # Web interface controller
 │   │           └── service/
 │   │               └── PdfService.kt          # PDF processing logic
 │   └── resources/
+│       ├── static/
+│       │   ├── css/
+│       │   │   └── style.css                  # Application styles
+│       │   └── js/
+│       │       └── app.js                     # Frontend JavaScript
 │       ├── templates/
-│       │   └── index.html                     # Web interface
+│       │   └── index.html                     # Web interface template
 │       └── application.properties             # Configuration
 └── test/
     └── kotlin/                                # Test files
@@ -202,13 +207,38 @@ The application includes comprehensive error handling:
 - No file persistence on server (files are processed in memory)
 - CORS is enabled for development (consider restricting in production)
 
+## Code Documentation
+
+All public methods in the application are thoroughly documented with KDoc comments, including:
+
+- **Purpose**: What the method does
+- **Parameters**: Description of input parameters and their expected format
+- **Return values**: What the method returns
+- **Usage examples**: Where applicable, especially for page number formats
+
+### API Method Documentation
+
+- `PdfController`: All REST endpoints are documented with parameter descriptions and response formats
+- `PdfService`: Core PDF processing methods with detailed implementation notes
+- `WebController`: Web interface routing documentation
+
 ## Development
 
 To modify the application:
 
 1. **Backend changes**: Edit files in `src/main/kotlin/org/pdfeditor/`
-2. **Frontend changes**: Edit `src/main/resources/templates/index.html`
+2. **Frontend changes**: 
+   - HTML structure: Edit `src/main/resources/templates/index.html`
+   - Styling: Edit `src/main/resources/static/css/style.css`
+   - JavaScript functionality: Edit `src/main/resources/static/js/app.js`
 3. **Configuration**: Modify `src/main/resources/application.properties`
+
+### Code Organization
+
+The application follows separation of concerns with:
+- **Modular CSS**: Styles separated into dedicated CSS file for maintainability
+- **External JavaScript**: All frontend logic in separate JS file
+- **Clean HTML**: Template focused on structure without inline styles or scripts
 
 Build and run tests:
 ```bash
