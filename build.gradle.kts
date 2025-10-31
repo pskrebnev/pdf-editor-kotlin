@@ -28,7 +28,7 @@ dependencies {
     
     // File upload handling
     implementation("commons-fileupload:commons-fileupload:1.5")
-    implementation("commons-io:commons-io:2.11.0")
+    implementation("commons-io:commons-io:2.14.0")
     
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation(kotlin("test"))

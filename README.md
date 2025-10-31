@@ -1,6 +1,6 @@
-# PDF Editor
+# PDF Manipulaton tool
 
-A professional PDF manipulation tool with a clean, modern web interface and REST API.
+A PDF manipulation tool with web interface and REST API.
 
 ## Features
 
@@ -8,7 +8,7 @@ A professional PDF manipulation tool with a clean, modern web interface and REST
 - **Combine PDFs**: Merge multiple PDF files into a single document
 - **Extract Pages**: Extract specific pages from a PDF into a new document
 - **Optimize PDFs**: Reduce file size by compressing PDF documents with configurable compression levels
-- **Web Interface**: Clean, modern web UI for easy file operations
+- **Web Interface**: Clean web UI for easy file operations
 - **REST API**: Full API endpoints for programmatic access
 
 ## Technologies Used
@@ -17,6 +17,7 @@ A professional PDF manipulation tool with a clean, modern web interface and REST
 - **PDF Processing**: Apache PDFBox 3.0.1
 - **Frontend**: HTML5, CSS3, JavaScript
 - **Build Tool**: Gradle
+- **Other Tools**: Claude.ai (as a reference tool) 
 
 ## Prerequisites
 
@@ -206,6 +207,18 @@ The application includes comprehensive error handling:
 - Maximum file sizes are configured to prevent abuse
 - No file persistence on server (files are processed in memory)
 - CORS is enabled for development (consider restricting in production)
+
+## Vulnerability
+
+- Library for file uploading "commons-io:commons-io:2.10.0" is changed to "commons-io:commons-io:2.14.0"
+
+## Testing
+
+- Functionality of 'Delete Pages', 'Extract Pages' where generally tested
+
+## Bugs / Issues
+
+- The product is offered "as is". I probably won't have time to fix bugs or make changes.
 
 ## Code Documentation
 
